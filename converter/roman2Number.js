@@ -25,15 +25,18 @@ roman_to_number = (roman_number) => {
         }
     } else {
         number = char_to_integer(roman_number.charAt(0));
-        let prev, curr;
+        let prev, current;
     
         for(let i = 1; i < roman_number.length; i++){
-            curr = char_to_integer(roman_number.charAt(i));
+            current = char_to_integer(roman_number.charAt(i));
             prev = char_to_integer(roman_number.charAt(i-1));
-            if( curr <= prev ){
-                number += curr;
+            if( current <= prev ){
+                number += current;
             } else {
-                number = number - prev*2 + curr;
+                number -= prev;
+                current -= prev;
+                number += current;
+                // number = number - prev*2 + curr;
             }
         }
         return number;
